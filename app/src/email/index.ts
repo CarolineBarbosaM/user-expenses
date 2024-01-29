@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import response from "../utils/responses";
+import { password } from '../database/config/database';
 
 
 class Email {
@@ -7,10 +8,13 @@ class Email {
         if(!email) return response(404, 'E-mail não pode ser vazio!')
 
         const transport = nodemailer.createTransport({
-            host: '',
-            port: 0,
+            host: 'smtp.gmail.com',
+            port: 465,
             secure: false,
-            auth: {}
+            auth: {
+                user: 'teste@gmail.com',
+                pass: '123456'
+            }
         });
         
         transport.sendMail({
